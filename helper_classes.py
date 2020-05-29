@@ -1,6 +1,6 @@
 class BotAction:
 	channels=[]
-	command=''
+	command=None
 	def action(message):
 		pass
 		

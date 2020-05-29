@@ -70,7 +70,7 @@ async def on_message(message):
 		return
 	
 	for botAction in botActionController.botActionsList:
-		if message.channel.name in botAction.channels and (message.content.startswith(botAction.command + ' ') or message.content == botAction.command):
+		if message.channel.name in botAction.channels and (botAction.command == None or message.content.startswith(botAction.command + ' ') or message.content == botAction.command):
 			await botAction.action(message)
 	
 	
