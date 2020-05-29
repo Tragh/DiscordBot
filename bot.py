@@ -9,17 +9,13 @@ from helper_classes import *
 botActionController=BotActionController()
 
 
-
-
 async def reportForDuty(message):
 	await message.channel.send("bot reporting for duty!")
 		
-botActionController.createBotAction() \
-	.inChannel('admin-test') \
-	.inChannel('admin-chat') \
-	.onCommand("!bot") \
-	.takeAction(reportForDuty) \
-	.done()
+botActionController.addBotAction(
+	channelList=['admin-test', 'admin-chat'],
+	onCommand="!bot",
+	takeAction=reportForDuty)
 
 async def repostMessage(message):
 	await asyncio.sleep(2)
@@ -41,12 +37,10 @@ async def repostMessage(message):
 	for fileBuffer in fileBufferList:
 		fileBuffer.close()
 
-botActionController.createBotAction() \
-	.inChannel('admin-chat') \
-	.onCommand("!botrepost") \
-	.takeAction(repostMessage) \
-	.done()
-
+botActionController.addBotAction(
+	channelList=['admin-chat'],
+	onCommand="!botrepost",
+	takeAction=repostMessage)
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
